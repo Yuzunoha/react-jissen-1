@@ -3,9 +3,10 @@ export const App = () => {
   const onClickButton = () => {
     alert();
   };
+  const styleH1 = { color: 'red' };
   return (
     <>
-      <h1 style={{ color: 'red' }}>こんにちは！！</h1>
+      <h1 style={styleH1}>こんにちは！！</h1>
       <p>お元気ですか。</p>
       <button onClick={onClickButton}>ボタン</button>
     </>
