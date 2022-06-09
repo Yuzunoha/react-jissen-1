@@ -5,10 +5,19 @@ const main = () => {
     const bodyEl = document.getElementsByTagName('body')[0];
     const newContainerEl = document.createElement('div');
     newContainerEl.className = 'container';
-    newContainerEl.id = `memoId${new Date().getTime()}`;
+    const memoId = `memoId${new Date().getTime()}`;
+    newContainerEl.id = memoId;
     const pEl = document.createElement('p');
     pEl.textContent = text;
     newContainerEl.appendChild(pEl);
+
+    // コンテナに削除ボタンを追加する
+    const btnDeleteEl = document.createElement('button');
+    btnDeleteEl.textContent = '削除';
+    btnDeleteEl.addEventListener('click', () => deleteMemo(memoId));
+    newContainerEl.appendChild(btnDeleteEl);
+
+    // ボディにコンテナを追加する
     bodyEl.appendChild(newContainerEl);
   };
 
@@ -24,6 +33,11 @@ const main = () => {
 
     // コンテナを追加する
     addContainerForBody(text);
+  };
+
+  const deleteMemo = (memoId) => {
+    const memo = document.getElementById(memoId);
+    memo.remove();
   };
 
   const addButtonEl = document.getElementById('add-button');
