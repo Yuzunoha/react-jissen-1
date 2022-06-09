@@ -16,7 +16,13 @@ const main = () => {
     const addTextEl = document.getElementById('add-text');
     const text = addTextEl.value;
 
-    alert('押された' + text);
+    // 空は禁止する
+    if (!text.trim().length) {
+      return;
+    }
+
+    // コンテナを追加する
+    addContainerForBody(text);
   };
 
   const addButtonEl = document.getElementById('add-button');
