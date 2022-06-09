@@ -12,7 +12,11 @@ const main = () => {
   };
 
   const onClickAddMemo = () => {
-    alert('押された');
+    // テキストを取得する
+    const addTextEl = document.getElementById('add-text');
+    const text = addTextEl.value;
+
+    alert('押された' + text);
   };
 
   const addButtonEl = document.getElementById('add-button');
