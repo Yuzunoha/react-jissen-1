@@ -5,6 +5,7 @@ const main = () => {
     const bodyEl = document.getElementsByTagName('body')[0];
     const newContainerEl = document.createElement('div');
     newContainerEl.className = 'container';
+    newContainerEl.id = `memoId${new Date().getTime()}`;
     const pEl = document.createElement('p');
     pEl.textContent = text;
     newContainerEl.appendChild(pEl);
