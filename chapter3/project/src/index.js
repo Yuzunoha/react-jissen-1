@@ -41,7 +41,6 @@ const main = () => {
   };
 
   const addButtonEl = document.getElementById('add-button');
-
   addButtonEl.addEventListener('click', onClickAddMemo);
 };
 
