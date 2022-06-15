@@ -6,7 +6,11 @@ export const App = () => {
   const [num, setNum] = useState(0);
   // ボタン押下時に呼ぶ関数
   const onClickButton = () => {
-    setNum(num + 1);
+    setNum((n) => n++);
+    setNum((n) => n++);
+    setNum((n) => n++);
+    setNum((n) => ++n);
+    setNum((n) => ++n);
   };
 
   const styleH1 = { color: 'red' };
