@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ColoredMessage } from './components/ColoredMessage';
 
 export const App = () => {
+  console.log('レンダリング');
   // Stateの定義
   const [num, setNum] = useState(0);
   // ボタン押下時に呼ぶ関数
