@@ -5,7 +5,7 @@ const style = {
   backgroundColor: 'lightgray',
 };
 
-export const Child3 = () => {
+export const Child3 = memo(() => {
   console.log('Child3 レンダリング ');
 
   return (
@@ -13,4 +13,4 @@ export const Child3 = () => {
       <p>Child3</p>
     </div>
   );
-};
+});

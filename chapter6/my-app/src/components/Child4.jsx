@@ -6,7 +6,7 @@ const style = {
   padding: '8px',
 };
 
-export const Child4 = () => {
+export const Child4 = memo(() => {
   console.log('Child4 レンダリング ');
 
   return (
@@ -14,4 +14,4 @@ export const Child4 = () => {
       <p>Child4</p>
     </div>
   );
-};
+});
