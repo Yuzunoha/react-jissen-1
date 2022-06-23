@@ -1,12 +1,11 @@
+import { useState } from 'react';
 import { createContext } from 'react';
 
 export const AdminFlagContext = createContext({});
 
 export const AdminFlagProvider = (props) => {
   const { children } = props;
+  const [isAdmin, setIsAdmin] = useState(false);
 
-  // 動作確認のために適当なオブジェクトを定義
-  const sampleObj = { sampleValue: 'テスト' };
-
-  return <AdminFlagContext.Provider value={sampleObj}>{children}</AdminFlagContext.Provider>;
+  return <AdminFlagContext.Provider value={{ isAdmin, setIsAdmin }}>{children}</AdminFlagContext.Provider>;
 };
