@@ -1,13 +1,14 @@
-import { ChangeEvent, useState, FC, memo, useCallback } from 'react';
+import { ChangeEvent, useState, FC, useCallback } from 'react';
 import styled from 'styled-components';
 import { MemoList } from './MemoList';
+import { useMemoList } from '../hooks/useMemoList';
 
 export const App: FC = () => {
+  // カスタムフックからそれぞれ取得
+  const { memos, addTodo, deleteTodo } = useMemoList();
+
   // テキストボックス State
   const [text, setText] = useState<string>('');
-
-  // メモ一覧 State
-  const [memos, setMemos] = useState<string[]>([]);
 
   // テキストボックス入力時に入力内容を State に設定する
   const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
@@ -16,11 +17,9 @@ export const App: FC = () => {
 
   // 追加ボタン押下時
   const onClickAdd = () => {
-    // State 変更を正常に検知させるための新たな配列を生成する
-    const newMemos = [...memos];
-    // テキストボックスの入力内容をメモ配列に追加
-    newMemos.push(text);
-    setMemos(newMemos);
+    // カスタムフックのメモ追加ロジック実行
+    addTodo(text);
+
     // テキストボックスクリア
     setText('');
   };
@@ -28,13 +27,10 @@ export const App: FC = () => {
   // 削除ボタン押下時(何番目が押されたかを引数で受け取る)
   const onClickDelete = useCallback(
     (index: number) => {
-      // State 変更を正常に検知させるための新たな配列を生成する
-      const newMemos = [...memos];
-      // メモ配列から該当の要素を削除する
-      newMemos.splice(index, 1);
-      setMemos(newMemos);
+      // カスタムフックのメモ削除ロジック実行
+      deleteTodo(index);
     },
-    [memos]
+    [deleteTodo]
   );
 
   return (
