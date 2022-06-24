@@ -1,21 +1,37 @@
-import { useContext, useState } from 'react';
-import { Card } from './components/Card';
-import { AdminFlagContext } from './components/providers/AdminFlagProvider';
+import { useState } from 'react';
+import axios from 'axios';
 
 export const App = () => {
-  // 管理者フラグ
-  const { isAdmin, setIsAdmin } = useContext(AdminFlagContext);
+  const [userList, setUserList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  // [切り替え]押下時
-  const onClickSwitch = () => setIsAdmin(!isAdmin);
+  // ユーザー取得ボタン押下アクション
+  const onClickFetchUser = () => {
+    // ボタン押下時
+    setIsLoading(true);
+    setIsError(false);
 
-  const getMsgKanrisha = (b) => (b ? '管理者です' : '管理者以外です');
+    // APIを叩く
+    const url = '';
+    axios
+      .get(url)
+      .then((result) => {
+        const users = result.data.map((user) => ({
+          id: user.id,
+          name: `${user.lastname} ${user.firstname}`,
+          age: user.age,
+        }));
+        setUserList(users);
+      })
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
+  };
   return (
     <div>
-      {/* 管理者フラグがtrueの時とそれ以外で文字を出し分け */}
-      <span>{getMsgKanrisha(isAdmin)}</span>
-      <button onClick={onClickSwitch}>切り替え</button>
-      <Card isAdmin={isAdmin} />
+      <button onClick={onClickFetchUser}>ユーザー取得</button>
+      {isError && <p style={{ color: 'red' }}>エラーが発生しました</p>}
+      {isLoading ? <p>データ取得中です</p> : userList.map((user) => <p key={user.id}>{`${user.id}:${user.name}(${user.age}歳)`}</p>)}
     </div>
   );
 };
